@@ -5,7 +5,13 @@
 ## Installation
 
 ```
-pip install python-docx
+pip install git+https://gitee.com/nicefeiniu/python-docx
+```
+
+OR
+
+```shell
+pip install git+https://github.com/nciefeiniu/python-docx
 ```
 
 ## Example

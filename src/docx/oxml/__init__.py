@@ -241,3 +241,23 @@ register_element_cls("w:spacing", CT_Spacing)
 register_element_cls("w:tab", CT_TabStop)
 register_element_cls("w:tabs", CT_TabStops)
 register_element_cls("w:widowControl", CT_OnOff)
+
+
+from .textbox import (  # noqa
+    AlternateContent,
+    AlternateContentChoice,
+    AlternateContentFallback,
+    Anchor,
+    CT_LinkedTextboxInformation,
+    CT_TextBoxContent,
+    CT_TextboxInfo,
+    CT_WordprocessingShape,
+)
+register_element_cls("mc:AlternateContent", AlternateContent)
+register_element_cls("mc:Choice",           AlternateContentChoice)
+register_element_cls("mc:Fallback",         AlternateContentFallback)
+register_element_cls("wp:anchor",           Anchor)
+register_element_cls("wps:linkedTxbx",      CT_LinkedTextboxInformation)
+register_element_cls("w:txbxContent",       CT_TextBoxContent)
+register_element_cls("wps:txbx",            CT_TextboxInfo)
+register_element_cls("wps:wsp",             CT_WordprocessingShape)

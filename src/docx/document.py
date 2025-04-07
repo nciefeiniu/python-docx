@@ -12,6 +12,7 @@ from docx.enum.section import WD_SECTION
 from docx.enum.text import WD_BREAK
 from docx.section import Section, Sections
 from docx.shared import ElementProxy, Emu
+from docx.oxml.textbox import find_textboxes
 
 if TYPE_CHECKING:
     import docx.types as t
@@ -186,6 +187,13 @@ class Document(ElementProxy):
         if self.__body is None:
             self.__body = _Body(self._element.body, self)
         return self.__body
+
+    @property
+    def textboxes(self):
+        """
+        List all text box objects in the document.
+        """
+        return find_textboxes(self._element)
 
 
 class _Body(BlockItemContainer):

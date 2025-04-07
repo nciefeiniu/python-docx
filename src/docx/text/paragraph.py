@@ -12,6 +12,7 @@ from docx.text.hyperlink import Hyperlink
 from docx.text.pagebreak import RenderedPageBreak
 from docx.text.parfmt import ParagraphFormat
 from docx.text.run import Run
+from docx.oxml.ns import qn
 
 if TYPE_CHECKING:
     import docx.types as t
@@ -170,15 +171,18 @@ class Paragraph(StoryChild):
     @property
     def accepted_text(self):
         """
-        String formed by accepting all changes and concatenating
-        the text of each run in the paragraph.
-        Tabs and line breaks in the XML are mapped to ``\\t`` and ``\\n``
-        characters respectively.
+        获取包含 修订的文本
         """
-        text = ''
-        for run_text in self._p.xpath(".//w:t"):
-            text += run_text.text
-        return text
+        text = []
+
+        for elem in self._p._element:
+            if elem.tag == qn("w:r"):
+                text.append(elem.text)
+            elif elem.tag == qn("w:ins"):
+                for sub_elem in elem:
+                    if sub_elem.tag == qn("w:r"):
+                        text.append(sub_elem.text)
+        return ''.join(text)
 
     def _insert_paragraph_before(self):
         """Return a newly created paragraph, inserted directly before this paragraph."""

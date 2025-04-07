@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='docx',
-    version='1.1.2.2',
+    version='1.1.2.3',
     package_dir={"": "src"},
     packages=find_packages(where='src'),
     install_requires=[

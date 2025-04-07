@@ -175,7 +175,7 @@ class Paragraph(StoryChild):
         """
         text = []
 
-        for elem in self._p._element:
+        for elem in self._element:
             if elem.tag == qn("w:r"):
                 text.append(elem.text)
             elif elem.tag == qn("w:ins"):

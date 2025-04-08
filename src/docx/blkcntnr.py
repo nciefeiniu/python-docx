@@ -83,7 +83,14 @@ class BlockItemContainer(StoryChild):
 
         Read-only.
         """
-        return [Paragraph(p, self) for p in self._element.p_lst]
+        _ = []
+        for p in self._element.p_lst:
+            # Paragraphs 需要去除是 textbox 的对象
+            if p.xpath('.//w:txbxContent'):
+                continue
+            _.append(Paragraph(p, self))
+        return _
+        # return [Paragraph(p, self) for p in self._element.p_lst]
 
     @property
     def tables(self):
